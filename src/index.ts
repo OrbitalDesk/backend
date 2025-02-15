@@ -1,13 +1,13 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 
-import UserApi from "./api/admin.api"
+import AdminApi from "./api/admin.api"
 
 const prisma = new PrismaClient();
 const app = express();
 const port = 3000;
 
-app.use('/api', UserApi)
+app.use('/api', AdminApi)
 
 
 app.listen(port, () => {
