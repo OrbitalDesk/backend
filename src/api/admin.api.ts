@@ -11,7 +11,7 @@ router.get('/users', apiKeyMiddleware, async (req, res) => {
   res.json(users);
 });
 
-router.get('/freelancesr', apiKeyMiddleware, async (req, res) => {
+router.get('/freelancers', apiKeyMiddleware, async (req, res) => {
   const freelancers = await prisma.freelancer.findMany();
   res.json(freelancers);
 });
