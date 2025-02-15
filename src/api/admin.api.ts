@@ -9,4 +9,9 @@ router.get('/users', async (req, res) => {
   res.json(users);
 });
 
+router.get('/admins', async (req, res) => {
+  const admins = await prisma.admin.findMany();
+  res.json(admins);
+})
+
 export default router;

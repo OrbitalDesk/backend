@@ -1,7 +1,7 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 
-import UserApi from "./api/user.api"
+import UserApi from "./api/admin.api"
 
 const prisma = new PrismaClient();
 const app = express();
