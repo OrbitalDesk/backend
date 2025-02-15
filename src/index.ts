@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const app = express();
 const port = 3000;
 
+//TODO: Put in an api file.
 app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany();
   res.json(users);
