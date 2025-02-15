@@ -22,6 +22,38 @@ model User {
   @@index([email])
 }
 
+
+model Freelancer {
+  id               Int              @id @default(autoincrement())
+  oauthProvider    String           // e.g. "google", "github", "facebook", etc.
+  oauthProviderId  String           // The unique ID for the user in the OAuth provider
+  email            String           @unique
+  firstName        String?
+  lastName         String?
+  avatarUrl        String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@index([email])
+}
+
+
+model Client {
+  id               Int              @id @default(autoincrement())
+  oauthProvider    String           // e.g. "google", "github", "facebook", etc.
+  oauthProviderId  String           // The unique ID for the user in the OAuth provider
+  email            String           @unique
+  firstName        String?
+  lastName         String?
+  avatarUrl        String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@index([email])
+}
+
+
+
 model Permission {
   id         Int      @id @default(autoincrement())
   name       String   // The name of the permission (e.g., "ticket.view")
