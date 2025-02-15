@@ -11,14 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const client_1 = require("@prisma/client");
+const apiKeyMiddleware_1 = require("../middleware/apiKeyMiddleware");
 const prisma = new client_1.PrismaClient();
 const router = (0, express_1.Router)();
-router.get('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/users', apiKeyMiddleware_1.apiKeyMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield prisma.user.findMany();
     res.json(users);
-}));
-router.get('/admins', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const admins = yield prisma.admin.findMany();
-    res.json(admins);
 }));
 exports.default = router;

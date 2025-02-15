@@ -8,15 +8,31 @@ generator client {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  password String
-  name  String
-  email String @unique
+  id               Int              @id @default(autoincrement())
+  oauthProvider    String           // e.g. "google", "github", "facebook", etc.
+  oauthProviderId  String           // The unique ID for the user in the OAuth provider
+  email            String           @unique
+  firstName        String?
+  lastName         String?
+  avatarUrl        String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  permissions      Permission[]     // Relationship to Permission model
+
+  @@index([email])
 }
 
-model Admin {
-  id    Int    @id @default(autoincrement())
-  password String
-  name  String
-  email String @unique
+model Permission {
+  id         Int      @id @default(autoincrement())
+  name       String   // The name of the permission (e.g., "ticket.view")
+  userId     Int      // Foreign key to associate the permission with the user
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+enum OAuthProvider {
+  google
+  github
+  facebook
+  twitter
+  linkedin
 }
