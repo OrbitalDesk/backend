@@ -46,7 +46,7 @@ router.get(
   (req: Request, res: Response) => {
     const user = req.user as any;
     const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: "1h" });
-    res.json({ message: "GitHub login successful", token, user, redirectUrl: "/dashboard" }); // Voeg redirect toe
+    res.json({ message: "GitHub login successful", token, user, redirectUrl: "/dashboard" });
   }
 );
 
