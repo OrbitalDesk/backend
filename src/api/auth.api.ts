@@ -35,10 +35,9 @@ router.get(
   (req: Request, res: Response) => {
     const user = req.user as any;
     const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: "1h" });
-    res.json({ message: "Discord login successful", token, user });
+    res.json({ message: "Discord login successful", token, user, redirectUrl: "/dashboard" }); // Voeg redirect toe
   }
 );
-
 // **GitHub Login**
 router.get("/github", passport.authenticate("github"));
 router.get(
@@ -47,7 +46,7 @@ router.get(
   (req: Request, res: Response) => {
     const user = req.user as any;
     const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: "1h" });
-    res.json({ message: "GitHub login successful", token, user });
+    res.json({ message: "GitHub login successful", token, user, redirectUrl: "/dashboard" }); // Voeg redirect toe
   }
 );
 
@@ -78,7 +77,7 @@ router.post("/register", async (req: Request, res: Response) => {
 router.post("/login", passport.authenticate("local"), (req: Request, res: Response) => {
   const user = req.user as any;
   const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: "1h" });
-  res.json({ token, user });
+  res.json({ token, user, redirectUrl: "/dashboard" }); 
 });
 
 // **Protected route (User Info)**
