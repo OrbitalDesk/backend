@@ -88,7 +88,7 @@ passport.use(
   )
 );
 
-// **Email + Wachtwoord Login**
+// **Email + Password Login**
 passport.use(
   new LocalStrategy(
     { usernameField: "email", passwordField: "password" },
