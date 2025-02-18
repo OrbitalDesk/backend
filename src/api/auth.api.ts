@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 const router = express.Router();
 const SECRET_KEY = process.env.JWT_SECRET || "secret";
 
-// Middleware om token te controleren
+// Middleware to check token.
 const isAuthenticated = (req: Request, res: Response, next: NextFunction): void => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
