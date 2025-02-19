@@ -7,6 +7,8 @@ import passport from "./passport";
 
 import AdminApi from "./api/admin.api"
 import AuthAPI from "./api/auth.api"
+import UserApi from "./api/user.api"
+
 
 const prisma = new PrismaClient();
 const app = express();
@@ -19,6 +21,8 @@ app.use(passport.session());
 
 app.use('/api', AdminApi)
 app.use("/auth", AuthAPI);
+app.use("/profile", UserApi);
+
 
 
 app.listen(port, () => {
